@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:penjual/const/navigasi.dart';
+import 'package:penjual/presentasi/page/kelola_menu_view.dart';
 import 'package:penjual/presentasi/page/rekap_view.dart';
 import 'package:penjual/presentasi/page/review_view.dart';
 import 'package:penjual/presentasi/page/riwayat_view.dart';
@@ -22,7 +23,9 @@ class CustomDrawer extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ))),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              toPageCupertino(context, KelolaMenuView());
+            },
             leading: Image.asset(
               "assets/icon/Category.png",
               scale: 4,

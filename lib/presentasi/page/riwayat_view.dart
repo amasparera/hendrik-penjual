@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:penjual/presentasi/page/riwayat_detail_selesai.dart';
 import 'package:penjual/presentasi/widget/card_order.dart';
 
@@ -12,6 +10,7 @@ class RiwayatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> hari = ["Senin", "Selasa", "Rabu", "Kamis"];
     return Scaffold(
       backgroundColor: bg,
       appBar: AppBar(
@@ -37,6 +36,57 @@ class RiwayatView extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: padding),
         children: [
+          Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: padding),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border:
+                        Border.all(width: 1, color: const Color(0xffbdbdbd))),
+                child: DropdownButton(
+                  underline: const SizedBox(),
+                  hint: Row(
+                    children: [
+                      Image.asset(
+                        "assets/icon/Calendar.png",
+                        scale: 4,
+                      ),
+                      const SizedBox(width: 12),
+                      const Text(
+                        "Pilih hari",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(width: padding),
+                    ],
+                  ),
+                  value: "Senin",
+                  items: hari.map((value) {
+                    return DropdownMenuItem(
+                      value: value,
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "assets/icon/Calendar.png",
+                            scale: 4,
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            value,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: padding),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) {},
+                ),
+              ),
+              Spacer(),
+            ],
+          ),
           ...List.generate(
             3,
             (index) => Padding(

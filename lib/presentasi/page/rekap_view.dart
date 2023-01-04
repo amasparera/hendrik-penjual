@@ -1,7 +1,5 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../../const/main_app.dart';
 import '../../const/navigasi.dart';
@@ -11,6 +9,7 @@ class RecapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> bulan = ["Oktober 2020", "September 2020", "November 2020"];
     return Scaffold(
       backgroundColor: bg,
       appBar: AppBar(
@@ -36,6 +35,55 @@ class RecapView extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: padding),
         children: [
+          Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: padding),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border:
+                        Border.all(width: 1, color: const Color(0xffbdbdbd))),
+                child: DropdownButton(
+                  underline: const SizedBox(),
+                  hint: Row(
+                    children: [
+                      Image.asset(
+                        "assets/icon/Calendar.png",
+                        scale: 4,
+                      ),
+                      const SizedBox(width: 12),
+                      const Text(
+                        "pilih bulan",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  value: "Oktober 2020",
+                  items: bulan.map((value) {
+                    return DropdownMenuItem(
+                      value: value,
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "assets/icon/Calendar.png",
+                            scale: 4,
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            value,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) {},
+                ),
+              ),
+              Spacer(),
+            ],
+          ),
           Row(
             children: const [
               Expanded(
