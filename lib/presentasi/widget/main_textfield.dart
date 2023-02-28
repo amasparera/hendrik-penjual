@@ -8,6 +8,7 @@ class MainTextField extends StatelessWidget {
       required this.hint,
       this.obscure = false,
       this.visibiliti,
+      this.onChange,
       this.maxLine})
       : super(key: key);
 
@@ -16,36 +17,37 @@ class MainTextField extends StatelessWidget {
   final String hint;
   final bool obscure;
   final Widget? visibiliti;
+  final ValueChanged? onChange;
   final int? maxLine;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       obscureText: obscure,
-      maxLines: maxLine,
-      minLines: maxLine,
       controller: controller,
+      onChanged: onChange,
+      minLines: 1,
+      maxLines: maxLine ?? 1,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-        isDense: true,
-        hintStyle: const TextStyle(color: Color(0xffBDBDBD), fontSize: 12),
+        hintStyle: const TextStyle(color: Color(0xffBDBDBD)),
         prefixIcon: icon,
         prefixIconColor: const Color(0xff767475),
         suffixIcon: visibiliti,
         suffixIconColor: const Color(0xff767475),
         hintText: hint,
+
         fillColor: const Color(0xffFAFAFA),
         filled: true,
         focusColor: const Color(0xff767475),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(
             color: Color(0xffEEEEEE),
             width: 1.0,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(
             color: Color(0xffEEEEEE),
             width: 2.0,

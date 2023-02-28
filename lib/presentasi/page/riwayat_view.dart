@@ -84,7 +84,7 @@ class RiwayatView extends StatelessWidget {
                   onChanged: (value) {},
                 ),
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
           ...List.generate(

@@ -24,7 +24,7 @@ class CustomDrawer extends StatelessWidget {
           ))),
           ListTile(
             onTap: () {
-              toPageCupertino(context, KelolaMenuView());
+              toPageCupertino(context, const KelolaMenuView());
             },
             leading: Image.asset(
               "assets/icon/Category.png",

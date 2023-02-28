@@ -44,7 +44,7 @@ class AddMenuView extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: DottedBorder(
-              dashPattern: [8, 8],
+              dashPattern: const [8, 8],
               color: const Color(0xffeeeeee),
               strokeWidth: 1,
               radius: const Radius.circular(12),
@@ -54,7 +54,7 @@ class AddMenuView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.add,
                       color: Color(0xffbdbdbd),

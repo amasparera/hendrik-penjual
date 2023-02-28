@@ -2,8 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:penjual/const/main_app.dart';
 import 'package:penjual/const/navigasi.dart';
+import 'package:penjual/presentasi/controller/profile_controller.dart';
 import 'package:penjual/presentasi/page/detail_pesanan_view.dart';
 import 'package:penjual/presentasi/widget/card_order.dart';
+import 'package:provider/provider.dart';
 
 import '../widget/custom_drawer.dart';
 
@@ -41,86 +43,104 @@ class HomeView extends StatelessWidget {
           ),
           actions: [
             Center(
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(12, 12),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
+              child: Consumer<ProfileController>(builder: (context, c, _) {
+                return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(12, 12),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => Dialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 18, vertical: 18),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const Text(
-                                      "Apakah anda yakin ingin menutupkantin anda sekarang?",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 12),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                          flex: 2,
-                                          child: TextButton(
-                                              onPressed: () {},
-                                              child: const Text(
-                                                "Batal",
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    color: Color(0xff616161),
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 18, vertical: 18),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Text(
+                                        "Apakah anda yakin ingin menutupkantin anda sekarang?",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            flex: 2,
+                                            child: TextButton(
+                                                onPressed: () {},
+                                                child: const Text(
+                                                  "Batal",
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: Color(0xff616161),
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )),
+                                          ),
+                                          const SizedBox(
+                                              height: 18,
+                                              child: VerticalDivider(
+                                                thickness: 2,
                                               )),
-                                        ),
-                                        const SizedBox(
-                                            height: 18,
-                                            child: VerticalDivider(
-                                              thickness: 2,
-                                            )),
-                                        Expanded(
-                                          flex: 3,
-                                          child: TextButton(
-                                              onPressed: () {},
-                                              child: const Text(
-                                                "Tutup sekarang",
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    color: Color(0xffD32F2F),
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                          Expanded(
+                                            flex: 3,
+                                            child: TextButton(
+                                                onPressed: () {
+                                                  c.openClose(context);
+                                                },
+                                                child: Text(
+                                                  c.buka
+                                                      ? "Tutup sekarang"
+                                                      : 'Buka sekarang',
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: c.buka
+                                                          ? const Color(
+                                                              0xffD32F2F)
+                                                          : const Color(
+                                                              0xff388E3C),
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ));
-                  },
-                  child: const Text(
-                    "Buka",
-                    style: TextStyle(
-                        color: Color(0xff388E3C),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12),
-                  )),
+                              ));
+                    },
+                    child: c.buka
+                        ? const Text(
+                            "Buka",
+                            style: TextStyle(
+                                color: Color(0xff388E3C),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12),
+                          )
+                        : const Text(
+                            "Tutup",
+                            style: TextStyle(
+                                color: Color(0xffD32F2F),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12),
+                          ));
+              }),
             ),
             const SizedBox(
               width: padding,
